@@ -1,0 +1,29 @@
+cloud_provider = "digitalocean"
+
+base_domain = "cloud-apps.example.com"
+acme_email  = "noreply@example.com"
+
+# DigitalOcean settings (ignored if cloud_provider != "digitalocean")
+do_region           = "nyc3"
+do_droplet_size     = "s-2vcpu-4gb"
+do_droplet_image    = "docker-20-04"
+do_droplet_name     = "cloud-apps"
+do_dns_domain       = "example.com"
+do_enable_ipv6      = true
+do_ssh_key_names    = ["my-laptop-key"]
+do_firewall_ssh_source_ranges = ["0.0.0.0/0", "::/0"]
+
+# cloud-apps source
+cloud_apps_repo_url = "https://github.com/nickhedberg/cloud-apps.git"
+cloud_apps_repo_ref = "main"
+
+# Traefik
+traefik_log_level    = "INFO"
+traefik_access_log   = true
+traefik_dashboard_user = "admin"
+
+# Generate these with:
+#   htpasswd -nbB admin yourpassword | sed 's/\$/\$\$/g'
+traefik_dashboard_password_hash = "$$apr1$$xyz$$placeholder"
+freecad_user                    = "admin"
+freecad_password_hash           = "$$apr1$$xyz$$placeholder"
