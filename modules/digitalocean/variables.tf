@@ -50,11 +50,6 @@ variable "base_domain" {
   type        = string
 }
 
-variable "acme_email" {
-  description = "Email used by Traefik for Let's Encrypt ACME."
-  type        = string
-}
-
 variable "cloud_apps_repo_url" {
   description = "Git repository URL for the cloud-apps docker-compose stack."
   type        = string
@@ -73,34 +68,8 @@ variable "cloud_apps_install_path" {
   default     = "/opt/cloud-apps"
 }
 
-variable "traefik_log_level" {
-  type    = string
-  default = "INFO"
-}
-
-variable "traefik_access_log" {
-  type    = bool
-  default = true
-}
-
-variable "traefik_dashboard_user" {
-  type    = string
-  default = "admin"
-}
-
-variable "traefik_dashboard_password_hash" {
-  description = "htpasswd-generated hash. Generate with: htpasswd -nbB admin yourpassword | sed 's/\\$/\\$\\$/g'"
-  type        = string
-  sensitive   = true
-}
-
-variable "freecad_user" {
-  type    = string
-  default = "admin"
-}
-
-variable "freecad_password_hash" {
-  description = "htpasswd-generated hash. Generate with: htpasswd -nbB admin yourpassword | sed 's/\\$/\\$\\$/g'"
+variable "env_file_content" {
+  description = "Raw contents of a cloud-apps .env file, written verbatim to /opt/cloud-apps/.env on the droplet."
   type        = string
   sensitive   = true
 }

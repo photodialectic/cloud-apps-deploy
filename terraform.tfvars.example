@@ -1,7 +1,9 @@
 cloud_provider = "digitalocean"
 
-base_domain = "cloud-apps.example.com"
-acme_email  = "noreply@example.com"
+# Path to your cloud-apps .env (edit values there with `./cloud-apps config
+# edit` / `config set` — BASE_DOMAIN, ACME_EMAIL, TRAEFIK_*, CLOUD_APP_* all
+# come from this file and are copied verbatim to the droplet).
+env_file = "../cloud-apps/.env"
 
 # DigitalOcean settings (ignored if cloud_provider != "digitalocean")
 do_region           = "nyc3"
@@ -16,14 +18,3 @@ do_firewall_ssh_source_ranges = ["0.0.0.0/0", "::/0"]
 # cloud-apps source
 cloud_apps_repo_url = "https://github.com/nickhedberg/cloud-apps.git"
 cloud_apps_repo_ref = "main"
-
-# Traefik
-traefik_log_level    = "INFO"
-traefik_access_log   = true
-traefik_dashboard_user = "admin"
-
-# Generate these with:
-#   htpasswd -nbB admin yourpassword | sed 's/\$/\$\$/g'
-traefik_dashboard_password_hash = "$$apr1$$xyz$$placeholder"
-freecad_user                    = "admin"
-freecad_password_hash           = "$$apr1$$xyz$$placeholder"

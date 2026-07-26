@@ -81,16 +81,9 @@ resource "digitalocean_record" "apex" {
 
 locals {
   user_data = templatefile("${path.module}/cloud-init.yaml.tpl", {
-    base_domain                     = var.base_domain
-    acme_email                      = var.acme_email
-    repo_url                        = var.cloud_apps_repo_url
-    repo_ref                        = var.cloud_apps_repo_ref
-    install_path                    = var.cloud_apps_install_path
-    traefik_log_level               = var.traefik_log_level
-    traefik_access_log              = var.traefik_access_log ? "true" : "false"
-    traefik_dashboard_user          = var.traefik_dashboard_user
-    traefik_dashboard_password_hash = var.traefik_dashboard_password_hash
-    freecad_user                    = var.freecad_user
-    freecad_password_hash           = var.freecad_password_hash
+    repo_url         = var.cloud_apps_repo_url
+    repo_ref         = var.cloud_apps_repo_ref
+    install_path     = var.cloud_apps_install_path
+    env_file_content = var.env_file_content
   })
 }
