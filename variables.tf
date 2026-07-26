@@ -9,13 +9,13 @@ variable "cloud_provider" {
   }
 }
 
-variable "base_domain" {
-  description = "Base domain served by Traefik (matches BASE_DOMAIN in cloud-apps .env)."
-  type        = string
-}
-
-variable "acme_email" {
-  description = "Email for Let's Encrypt ACME registration."
+variable "env_file" {
+  description = <<-EOT
+    Path to a cloud-apps .env file (see cloud-apps/.env.example). Its contents
+    are copied verbatim to the droplet as /opt/cloud-apps/.env, so all app
+    config (BASE_DOMAIN, ACME_EMAIL, TRAEFIK_*, CLOUD_APP_*) is managed there
+    with `./cloud-apps config edit`/`config set`, not here.
+  EOT
   type        = string
 }
 
@@ -31,34 +31,3 @@ variable "cloud_apps_repo_ref" {
   default     = "main"
 }
 
-variable "traefik_dashboard_user" {
-  type    = string
-  default = "admin"
-}
-
-variable "traefik_dashboard_password_hash" {
-  description = "htpasswd-generated, $-doubled hash. See README."
-  type        = string
-  sensitive   = true
-}
-
-variable "freecad_user" {
-  type    = string
-  default = "admin"
-}
-
-variable "freecad_password_hash" {
-  description = "htpasswd-generated, $-doubled hash. See README."
-  type        = string
-  sensitive   = true
-}
-
-variable "traefik_log_level" {
-  type    = string
-  default = "INFO"
-}
-
-variable "traefik_access_log" {
-  type    = bool
-  default = true
-}

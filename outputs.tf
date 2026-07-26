@@ -18,6 +18,6 @@ output "dns_records" {
   value = local.provider_outputs.dns_records
 }
 
-output "app_urls" {
-  value = local.provider_outputs.app_urls
+output "base_domain" {
+  value = local.provider_outputs.base_domain
 }

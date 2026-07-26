@@ -20,12 +20,9 @@ output "dns_records" {
   }
 }
 
-output "app_urls" {
-  description = "Predicted app URLs based on the cloud-apps compose labels."
-  value = {
-    freecad           = "https://freecad.${var.base_domain}"
-    traefik_dashboard = "https://traefik.${var.base_domain}"
-  }
+output "base_domain" {
+  description = "Base domain parsed from env_file. Apps are served at https://<app>.<base_domain> per whatever cloud-apps/docker-compose.yml defines; terraform doesn't track the app list."
+  value       = var.base_domain
 }
 
 output "firewall_id" {

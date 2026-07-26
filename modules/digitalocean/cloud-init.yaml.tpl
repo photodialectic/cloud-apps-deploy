@@ -10,14 +10,7 @@ write_files:
     permissions: "0600"
     owner: root:root
     content: |
-      BASE_DOMAIN=${base_domain}
-      ACME_EMAIL=${acme_email}
-      TRAEFIK_LOG_LEVEL=${traefik_log_level}
-      TRAEFIK_ACCESS_LOG=${traefik_access_log}
-      TRAEFIK_DASHBOARD_USER=${traefik_dashboard_user}
-      TRAEFIK_DASHBOARD_PASSWORD_HASH=${traefik_dashboard_password_hash}
-      FREECAD_USER=${freecad_user}
-      FREECAD_PASSWORD_HASH=${freecad_password_hash}
+      ${indent(6, env_file_content)}
 
 runcmd:
   - |
